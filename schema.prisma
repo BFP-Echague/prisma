@@ -1,0 +1,116 @@
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+// Represents an account's privilege level.
+enum PrivilegeLevel {
+    BASIC
+    ADMIN
+}
+
+// Represents a user of the system.
+model User {
+    id Int @id @default(autoincrement())
+
+    username     String @unique
+    email        String @unique
+    passwordHash String
+
+    privilege PrivilegeLevel
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    sessions Session[]
+
+    // TODO profile picture
+}
+
+// Session storage.
+model Session {
+    uuidHash String @id
+
+    loggedOut Boolean  @default(false)
+    expiresOn DateTime
+
+    user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+    userId Int
+}
+
+// ----------------------------------------
+
+// Represents a location.
+model Location {
+    id Int @id @default(autoincrement())
+
+    longitude Decimal
+    latitude  Decimal
+
+    incident Incident?
+}
+
+// Represents a barangay.
+model Barangay {
+    id Int @id @default(autoincrement())
+
+    name String
+
+    incident Incident?
+}
+
+// Represents the cause of the fire.
+model Cause {
+    id Int @id @default(autoincrement())
+
+    name String
+
+    causeIncidentJunc CauseIncidentJunc[]
+}
+
+model CauseIncidentJunc {
+    id Int @id @default(autoincrement())
+
+    cause   Cause @relation(fields: [causeId], references: [id], onDelete: Cascade)
+    causeId Int
+
+    incident   Incident @relation(fields: [incidentId], references: [id], onDelete: Cascade)
+    incidentId Int
+}
+
+// Represents the category of a fire incident.
+model Category {
+    id Int @id @default(autoincrement())
+
+    name     String
+    severity Int
+
+    incident Incident[]
+}
+
+// Represents a fire incident.
+model Incident {
+    id Int @id @default(autoincrement())
+
+    reportTime DateTime
+
+    location   Location @relation(fields: [locationId], references: [id], onDelete: Cascade)
+    locationId Int      @unique
+
+    barangay   Barangay @relation(fields: [barangayId], references: [id])
+    barangayId Int      @unique
+
+    causeIncidentJunc CauseIncidentJunc[]
+
+    responseTime       DateTime?
+    fireOutTime        DateTime?
+    structuresInvolved String[]
+    notes              String?
+
+    category   Category @relation(fields: [categoryId], references: [id])
+    categoryId Int
+}

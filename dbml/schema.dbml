@@ -1,0 +1,89 @@
+//// ------------------------------------------------------
+//// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+//// ------------------------------------------------------
+
+Table User {
+  id Int [pk, increment]
+  username String [unique, not null]
+  email String [unique, not null]
+  passwordHash String [not null]
+  privilege PrivilegeLevel [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  sessions Session [not null]
+}
+
+Table Session {
+  uuidHash String [pk]
+  loggedOut Boolean [not null, default: false]
+  expiresOn DateTime [not null]
+  user User [not null]
+  userId Int [not null]
+}
+
+Table Location {
+  id Int [pk, increment]
+  longitude Decimal [not null]
+  latitude Decimal [not null]
+  incident Incident
+}
+
+Table Barangay {
+  id Int [pk, increment]
+  name String [not null]
+  incident Incident
+}
+
+Table Cause {
+  id Int [pk, increment]
+  name String [not null]
+  causeIncidentJunc CauseIncidentJunc [not null]
+}
+
+Table CauseIncidentJunc {
+  id Int [pk, increment]
+  cause Cause [not null]
+  causeId Int [not null]
+  incident Incident [not null]
+  incidentId Int [not null]
+}
+
+Table Category {
+  id Int [pk, increment]
+  name String [not null]
+  severity Int [not null]
+  incident Incident [not null]
+}
+
+Table Incident {
+  id Int [pk, increment]
+  reportTime DateTime [not null]
+  location Location [not null]
+  locationId Int [unique, not null]
+  barangay Barangay [not null]
+  barangayId Int [unique, not null]
+  causeIncidentJunc CauseIncidentJunc [not null]
+  responseTime DateTime
+  fireOutTime DateTime
+  structuresInvolved String[] [not null]
+  notes String
+  category Category [not null]
+  categoryId Int [not null]
+}
+
+Enum PrivilegeLevel {
+  BASIC
+  ADMIN
+}
+
+Ref: Session.userId > User.id [delete: Cascade]
+
+Ref: CauseIncidentJunc.causeId > Cause.id [delete: Cascade]
+
+Ref: CauseIncidentJunc.incidentId > Incident.id [delete: Cascade]
+
+Ref: Incident.locationId - Location.id [delete: Cascade]
+
+Ref: Incident.barangayId - Barangay.id
+
+Ref: Incident.categoryId > Category.id
