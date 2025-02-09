@@ -60,7 +60,7 @@ model Barangay {
 
     name String
 
-    incident Incident?
+    incident Incident[]
 }
 
 // Represents the cause of the fire.
