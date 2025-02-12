@@ -96,7 +96,9 @@ model Category {
 model Incident {
     id Int @id @default(autoincrement())
 
-    reportTime DateTime
+    name String
+
+    reportTime DateTime?
 
     location   Location @relation(fields: [locationId], references: [id], onDelete: Cascade)
     locationId Int      @unique
