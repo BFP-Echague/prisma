@@ -125,7 +125,7 @@ export class IncidentUpsertUtils extends UpsertUtils<
             fireOutTime: data.fireOutTime,
             structuresInvolved: data.structuresInvolved,
             notes: data.notes,
-            category: { connect: { id: data.categoryId } }
+            category: data.categoryId ? { connect: { id: data.categoryId } } : undefined
         };
     }
 }
