@@ -2,7 +2,7 @@ import { Prisma } from "@prisma/client";
 import { type BlankObject } from "./interfaces";
 import { type JTDSchemaType } from "ajv/dist/core";
 import { type Request, type RequestHandler } from "express";
-import { type PartialObjectDeep } from "type-fest/source/partial-deep";
+import type { PartialObjectDeep } from "type-fest/source/partial-deep";
 import { type InternalArgs } from "@prisma/client/runtime/library";
 
 
