@@ -7,6 +7,13 @@ generator client {
     provider = "prisma-client-js"
 }
 
+generator prismaTypesGenerator {
+    provider = "prisma-types-generator"
+    modelSuffix = "Model"
+    prettier = "true"
+    output = "./prismaTypes"
+}
+
 // Represents an account's privilege level.
 enum PrivilegeLevel {
     BASIC

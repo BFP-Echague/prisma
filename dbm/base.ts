@@ -1,7 +1,7 @@
-import { Prisma } from "@prisma/client";
+import type { Prisma } from "@prisma/client";
 import { type BlankObject } from "./interfaces";
 import type { PartialObjectDeep } from "type-fest/source/partial-deep";
-import { type InternalArgs } from "@prisma/client/runtime/library";
+import type { InternalArgs } from "@prisma/client/runtime/library";
 
 
 

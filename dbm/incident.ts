@@ -1,4 +1,4 @@
-import { Prisma } from "@prisma/client";
+import type { Prisma } from "@prisma/client";
 import { type PrismaInternalArgs } from "./base";
 import { Decimal } from "decimal.js";
 

@@ -1,4 +1,4 @@
-import { Prisma, PrivilegeLevel } from "@prisma/client";
+import type { Prisma, PrivilegeLevel } from "@prisma/client";
 
 
 
