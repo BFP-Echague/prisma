@@ -1,8 +1,5 @@
 import { Prisma } from "@prisma/client";
-import { type JTDSchemaType } from "ajv/dist/core";
-import { type Request } from "express";
-import { type IdParams, type BlankObject } from "./interfaces";
-import { type DeepPartial, type PrismaInternalArgs, UpsertUtils } from "./base";
+import { type PrismaInternalArgs } from "./base";
 
 
 export const categoryInclude = {} satisfies Prisma.CategoryInclude<PrismaInternalArgs>;
@@ -15,43 +12,4 @@ export const categoryOrderBy = [
 export interface CategoryUpsert {
     name: string;
     severity: number;
-}
-export class CategoryUpsertUtils extends UpsertUtils<
-    CategoryUpsert, Prisma.CategoryCreateInput, Prisma.CategoryUpdateInput,
-    IdParams
-> {
-    public static inst = new CategoryUpsertUtils();
-
-    public constructor() {
-        const createJTD: JTDSchemaType<CategoryUpsert> = {
-            properties: {
-                "name": { type: "string" },
-                "severity": { type: "int32" }
-            }
-        };
-
-        const updateJTD: JTDSchemaType<DeepPartial<CategoryUpsert>> = {
-            optionalProperties: {
-                "name": { type: "string" },
-                "severity": { type: "int32" }
-            }
-        };
-
-        super(createJTD, updateJTD);
-    }
-
-
-    public override getCreateQuery(req: Request<BlankObject, BlankObject, BlankObject, BlankObject>, data: CategoryUpsert): Prisma.CategoryCreateInput {
-        return {
-            name: data.name,
-            severity: data.severity
-        };
-    }
-
-    public override getUpdateQuery(req: Request<IdParams, BlankObject, BlankObject, BlankObject>, data: DeepPartial<CategoryUpsert>): Prisma.CategoryUpdateInput {
-        return {
-            name: data.name,
-            severity: data.severity
-        };
-    }
 }
