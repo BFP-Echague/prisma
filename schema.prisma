@@ -70,25 +70,6 @@ model Barangay {
     incident Incident[]
 }
 
-// Represents the cause of the fire.
-model Cause {
-    id Int @id @default(autoincrement())
-
-    name String
-
-    causeIncidentJunc CauseIncidentJunc[]
-}
-
-model CauseIncidentJunc {
-    id Int @id @default(autoincrement())
-
-    cause   Cause @relation(fields: [causeId], references: [id], onDelete: Cascade)
-    causeId Int
-
-    incident   Incident @relation(fields: [incidentId], references: [id], onDelete: Cascade)
-    incidentId Int
-}
-
 // Represents the category of a fire incident.
 model Category {
     id Int @id @default(autoincrement())
@@ -113,7 +94,7 @@ model Incident {
     barangay   Barangay @relation(fields: [barangayId], references: [id])
     barangayId Int
 
-    causeIncidentJunc CauseIncidentJunc[]
+    causes String[]
 
     responseTime       DateTime?
     fireOutTime        DateTime?
