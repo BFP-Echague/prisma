@@ -23,7 +23,7 @@ export interface IncidentUpsert {
         latitude: string;
     };
     barangayId: number;
-    causeIds: number[];
+    causes: string[];
     responseTime?: Date;
     fireOutTime?: Date;
     structuresInvolved: string[];
