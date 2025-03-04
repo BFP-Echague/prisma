@@ -1,8 +1,8 @@
 import { Prisma, PrivilegeLevel } from "@prisma/client";
-import { DeepPartial, UpsertUtils } from "./base";
-import { JTDSchemaType } from "ajv/dist/core";
-import { Request } from "express";
-import { IdParams, BlankObject } from "./interfaces";
+import { type DeepPartial, UpsertUtils } from "./base";
+import { type JTDSchemaType } from "ajv/dist/core";
+import { type Request } from "express";
+import type { IdParams, BlankObject } from "./interfaces";;
 
 
 

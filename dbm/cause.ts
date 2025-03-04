@@ -1,8 +1,8 @@
 import { Prisma } from "@prisma/client";
-import { JTDSchemaType } from "ajv/dist/core";
-import { Request } from "express";
-import { IdParams, BlankObject } from "./interfaces";
-import { DeepPartial, PrismaInternalArgs, UpsertUtils } from "./base";
+import { type JTDSchemaType } from "ajv/dist/core";
+import { type Request } from "express";
+import { type IdParams, type BlankObject } from "./interfaces";
+import { type DeepPartial, type PrismaInternalArgs, UpsertUtils } from "./base";
 
 
 export const causeInclude = {} satisfies Prisma.CauseInclude<PrismaInternalArgs>;
