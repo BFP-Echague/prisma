@@ -3,7 +3,10 @@ import { type PrismaInternalArgs } from "./base";
 import { Decimal } from "decimal.js";
 
 
-export const incidentInclude = {} satisfies Prisma.IncidentInclude<PrismaInternalArgs>;
+export const incidentInclude = {
+    location: true,
+    barangay: true,
+} satisfies Prisma.IncidentInclude<PrismaInternalArgs>;
 export const incidentOrderBy = [
     {
         id: "asc"
