@@ -22,4 +22,4 @@ export type PrismaInternalArgs = InternalArgs & {
 
 
 
-export type DeepPartial<T extends object> = PartialObjectDeep<T, BlankObject>
+export type DeepPartial<T> = T extends object ? PartialObjectDeep<T, BlankObject> : T | undefined

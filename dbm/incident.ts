@@ -18,16 +18,13 @@ export const incidentOrderBy = [
 ] satisfies Prisma.IncidentOrderByWithRelationInput[];
 
 export const decimalRegex = /^[+-]?\d*\.\d{1,8}$/g;
-export function validateLocationAxis(locationAxisValue: string) {
-    return new Decimal(locationAxisValue);
-}
 
 export interface IncidentUpsert {
     name: string;
     reportTime?: Date;
     location: {
-        longitude: string;
-        latitude: string;
+        longitude: Decimal;
+        latitude: Decimal;
     };
     barangayId: number;
     causes: string[];
