@@ -7,7 +7,7 @@ export type BlankObject = NonNullable<unknown>;
 
 export interface PagedResult<T> {
     data: T;
-    pageInfo?: {
+    pageInfo: {
         cursorNext: number | null;
     };
 }
