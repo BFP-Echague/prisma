@@ -10,7 +10,10 @@ export const incidentInclude = {
 } satisfies Prisma.IncidentInclude<PrismaInternalArgs>;
 export const incidentOrderBy = [
     {
-        reportTime: "asc"
+        reportTime: "desc"
+    },
+    {
+        name: "asc"
     }
 ] satisfies Prisma.IncidentOrderByWithRelationInput[];
 
