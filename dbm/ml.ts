@@ -3,7 +3,7 @@ import { z } from "zod";
 import { incidentInclude } from "./incident";
 
 
-interface ClusteringSettings {
+export interface ClusteringSettings {
     componentCount: number | null;
     clusterCountStart: number;
     clusterCountEnd: number | null;
@@ -29,19 +29,19 @@ export interface ClusteringRequest {
 }
 
 
-interface ClusterResult {
+export interface ClusterResult {
     clusterCount: number;
     labels: number[][];
     score: number;
 }
-const clusterResultSchema: z.ZodType<ClusterResult> = z.object({
+export const clusterResultSchema: z.ZodType<ClusterResult> = z.object({
     clusterCount: z.number(),
     labels: z.array(z.array(z.number())),
     score: z.number()
 });
 
 
-interface ClusteringResponse {
+export interface ClusteringResponse {
     clusterResults: ClusterResult[];
     optimalClusterCount: number;
 }
