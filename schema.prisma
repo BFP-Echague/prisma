@@ -96,4 +96,6 @@ model Incident {
 
     category   Category @relation(fields: [categoryId], references: [id])
     categoryId Int
+
+    archived Boolean @default(false)
 }
