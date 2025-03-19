@@ -36,4 +36,5 @@ export interface IncidentUpsert {
     structuresInvolved: string[];
     notes?: string;
     categoryId: number;
+    archived?: boolean;
 }
