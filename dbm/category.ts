@@ -9,6 +9,8 @@ export const categoryOrderBy = [
     }
 ] satisfies Prisma.CategoryOrderByWithRelationInput[];
 
+export type CategoryGet = Prisma.CategoryGetPayload<{ include: typeof categoryInclude }>;
+
 export interface CategoryUpsert {
     name: string;
     severity: number;

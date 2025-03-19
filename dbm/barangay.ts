@@ -9,6 +9,8 @@ export const barangayOrderBy = [
     }
 ] satisfies Prisma.BarangayOrderByWithRelationInput[];
 
+export type BarangayGet = Prisma.BarangayGetPayload<{ include: typeof barangayInclude }>;
+
 export interface BarangayUpsert {
     name: string;
 }

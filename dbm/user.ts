@@ -18,6 +18,8 @@ export const userSelect = {
     updatedAt: true
 } satisfies Prisma.UserSelect;
 
+export type UserGet = Prisma.UserGetPayload<{ select: typeof userSelect }>;
+
 export interface UserUpsert {
     username: string;
     email: string;

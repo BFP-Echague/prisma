@@ -17,6 +17,9 @@ export const incidentOrderBy = [
     }
 ] satisfies Prisma.IncidentOrderByWithRelationInput[];
 
+export type IncidentGet = Prisma.IncidentGetPayload<{ include: typeof incidentInclude }>;
+
+
 export const decimalRegex = /^[+-]?\d*\.\d{1,8}$/g;
 
 export interface IncidentUpsert {
