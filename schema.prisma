@@ -28,7 +28,8 @@ model User {
 
     sessions Session[]
 
-    // TODO profile picture
+    incidentsCreated Incident[] @relation("createdBy")
+    incidentsUpdated Incident[] @relation("updatedBy")
 }
 
 // Session storage.
@@ -77,6 +78,8 @@ model Category {
 model Incident {
     id Int @id @default(autoincrement())
 
+    archived Boolean @default(false)
+
     name String
 
     reportTime DateTime?
@@ -97,5 +100,11 @@ model Incident {
     category   Category @relation(fields: [categoryId], references: [id])
     categoryId Int
 
-    archived Boolean @default(false)
+    createdAt   DateTime @default(now())
+    createdBy   User     @relation("createdBy", fields: [createdById], references: [id])
+    createdById Int
+
+    updatedAt   DateTime @updatedAt
+    updatedBy   User     @relation("updatedBy", fields: [updatedById], references: [id])
+    updatedById Int
 }

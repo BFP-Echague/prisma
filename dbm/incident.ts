@@ -6,7 +6,9 @@ import { Decimal } from "decimal.js";
 export const incidentInclude = {
     location: true,
     barangay: true,
-    category: true
+    category: true,
+    updatedBy: true,
+    createdBy: true
 } satisfies Prisma.IncidentInclude<PrismaInternalArgs>;
 export const incidentOrderBy = [
     {

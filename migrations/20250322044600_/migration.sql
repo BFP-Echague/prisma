@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE "Incident" ALTER COLUMN "createdById" DROP DEFAULT,
+ALTER COLUMN "updatedAt" DROP DEFAULT,
+ALTER COLUMN "updatedById" DROP DEFAULT;
